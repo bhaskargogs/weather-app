@@ -1,0 +1,51 @@
+
+weather-app-webservice/HELP.md
+weather-app-webservice/target/
+
+### STS ###
+weather-app-webservice/.apt_generated
+weather-app-webservice/.classpath
+weather-app-webservice/.factorypath
+weather-app-webservice/.project
+weather-app-webservice/.settings
+weather-app-webservice/.springBeans
+weather-app-webservice/.sts4-cache
+
+### IntelliJ IDEA ###
+weather-app-webservice/.idea
+weather-app-webservice/*.iws
+weather-app-webservice/*.iml
+weather-app-webservice/*.ipr
+
+### NetBeans ###
+weather-app-webservice/nbproject/private/
+weather-app-webservice/nbbuild/
+weather-app-webservice/dist/
+weather-app-webservice/nbdist/
+weather-app-webservice/.nb-gradle/
+weather-app-webservicebuild/
+
+### VS Code ###
+weather-app-webservice/.vscode/
+
+# dependencies
+weather-app-client/node_modules
+weather-app-client/.pnp
+weather-app-client/.pnp.js
+
+# testing
+weather-app-client/coverage
+
+# production
+weather-app-client/build
+
+# misc
+weather-app-client/.DS_Store
+weather-app-client/.env.local
+weather-app-client/.env.development.local
+weather-app-client/.env.test.local
+weather-app-client/.env.production.local
+
+weather-app-client/npm-debug.log*
+weather-app-client/yarn-debug.log*
+weather-app-client/yarn-error.log*
