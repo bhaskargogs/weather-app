@@ -1,2 +1,2 @@
 # weather-app
-A Simple Weather app webservice to get weather of different places based on random latitude and longitude
+A Simple Weather Application to get weather of different places based on random latitude and longitude
