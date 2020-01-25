@@ -19,11 +19,11 @@ public class Location {
     @JsonIgnore
     private Long id;
 
-    private Double lat;
+    private float lat;
 
-    private Double lon;
+    private float lon;
 
-    public Location(Double lat, Double lon) {
+    public Location(float lat, float lon) {
         this.lat = lat;
         this.lon = lon;
     }

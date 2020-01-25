@@ -42,7 +42,7 @@ public class HTTPUtils {
         return strings;
     }
 
-    private List<Double> getIntegers(int num, int min, int max) throws IOException {
+    private List<Float> getIntegers(int num, int min, int max) throws IOException {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(randomApi + "integers/")
                 .queryParam("num", num)
                 .queryParam("min", min)
@@ -52,10 +52,10 @@ public class HTTPUtils {
                 .queryParam("rnd", "new")
                 .queryParam("format", "plain");
         return get(builder.toUriString())
-                .stream().map(Double::parseDouble).collect(Collectors.toList());
+                .stream().map(Float::parseFloat).collect(Collectors.toList());
     }
 
-    private List<Double> getFractions(int num) throws IOException {
+    private List<Float> getFractions(int num) throws IOException {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(randomApi + "decimal-fractions/")
                 .queryParam("num", num)
                 .queryParam("dec", 2)
@@ -63,10 +63,10 @@ public class HTTPUtils {
                 .queryParam("rnd", "new")
                 .queryParam("format", "plain");
         return get(builder.toUriString())
-                .stream().map(Double::parseDouble).collect(Collectors.toList());
+                .stream().map(Float::parseFloat).collect(Collectors.toList());
     }
 
-    public List<Double> combineDoubles(int num, int min, int max) throws IOException {
+    public List<Float> combineDoubles(int num, int min, int max) throws IOException {
         return Streams.zip(getIntegers(num, min, max).stream(),
                 getFractions(num).stream(),
                 (d1, d2) -> d1 + d2)
