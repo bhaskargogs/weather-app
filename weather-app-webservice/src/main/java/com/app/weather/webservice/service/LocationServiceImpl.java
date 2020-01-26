@@ -5,6 +5,7 @@ import com.app.weather.webservice.payload.WeatherResponse;
 import com.app.weather.webservice.repository.LocationRepository;
 import com.app.weather.webservice.utils.HTTPUtils;
 import com.google.common.collect.Streams;
+import one.util.streamex.EntryStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -16,8 +17,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class LocationServiceImpl implements LocationService {
@@ -69,5 +72,22 @@ public class LocationServiceImpl implements LocationService {
             throw new RestClientException(ex.getMessage());
         }
         return response.getBody();
+    }
+
+    @Override
+    public List<WeatherResponse> setIdsAndReturn(List<WeatherResponse> weatherReport, int num) throws IOException {
+        List<Long> ids = IntStream.range(0, num).mapToLong(index -> new Long(index))
+                .boxed().collect(Collectors.toList());
+        List<Long> emptyIdList = weatherReport.stream().map(weatherResponse -> weatherResponse.getId())
+                .collect(Collectors.toList());
+        List<Long> idList = Streams.zip(emptyIdList.stream(), ids.stream(),
+                (val1, val2) -> val1 + val2).collect(Collectors.toList());
+        return EntryStream.of(weatherReport)
+                .filterKeyValue((index, weatherResponse) -> {
+                    weatherResponse.setId(idList.get(index));
+                    return index == index;
+                })
+                .values()
+                .collect(Collectors.toList());
     }
 }

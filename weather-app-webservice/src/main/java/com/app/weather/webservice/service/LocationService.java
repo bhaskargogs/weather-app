@@ -12,4 +12,5 @@ public interface LocationService {
     List<Float> generateLongitudes(int num) throws IOException;
     List<Location> getLocations(int num) throws IOException;
     WeatherResponse getWeather(float lat, float lon) throws RestClientException;
+    List<WeatherResponse> setIdsAndReturn(List<WeatherResponse> weatherReport, int num) throws IOException;
 }

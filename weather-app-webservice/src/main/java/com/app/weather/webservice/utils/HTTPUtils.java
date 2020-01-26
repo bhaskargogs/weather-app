@@ -42,7 +42,7 @@ public class HTTPUtils {
         return strings;
     }
 
-    private List<Float> getIntegers(int num, int min, int max) throws IOException {
+    public List<Float> getIntegers(int num, int min, int max) throws IOException {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(randomApi + "integers/")
                 .queryParam("num", num)
                 .queryParam("min", min)
