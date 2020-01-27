@@ -17,19 +17,6 @@ class App extends Component {
     this.getRandomCoords();
   }
 
-  getweatherData = () => {
-    fetch("http://127.0.0.1:8043/api/weather/getWeatherData/1")
-      .then(response => response.json())
-      .then(location => {
-        this.setState({
-          isLoading: false,
-          lat: location[0].lat,
-          lon: location[0].lon
-        });
-      })
-      .catch(error => this.setState({ error, isLoading: false }));
-  }
-
   getRandomCoords = () => {
     fetch("http://127.0.0.1:8043/api/weather/getWeatherData/10")
       .then(response => response.json())
