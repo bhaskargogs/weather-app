@@ -9,7 +9,7 @@ function Map(props) {
     longitude: props.lon,
     width: "100vw",
     height: "100vh",
-    zoom: 2
+    zoom: 3
   });
 
   return (
