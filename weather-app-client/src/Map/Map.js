@@ -9,18 +9,19 @@ function Map(props) {
     longitude: props.lon,
     width: "100vw",
     height: "100vh",
-    zoom: 8
+    zoom: 2
   });
 
   return (
     <React.Fragment>
-          <ReactMapGL
-            {...viewport}
-            onViewportChange={setViewport}
-            mapStyle="mapbox://styles/sbrueck/ck5u5v1bt184i1il6mpii6l4r"
-            mapboxApiAccessToken="pk.eyJ1Ijoic2JydWVjayIsImEiOiJjazV1NDQ4OWUwZnNyM2trMDVrNXowMTUwIn0.MEdrm_Mg3JXVefmWtVuaoA"
-          ></ReactMapGL>
-          <Markers data={props.locations} />
+      <ReactMapGL
+        {...viewport}
+        onViewportChange={setViewport}
+        mapStyle="mapbox://styles/sbrueck/ck5u5v1bt184i1il6mpii6l4r"
+        mapboxApiAccessToken="pk.eyJ1Ijoic2JydWVjayIsImEiOiJjazV1NDQ4OWUwZnNyM2trMDVrNXowMTUwIn0.MEdrm_Mg3JXVefmWtVuaoA"
+      >
+        <Markers data={props.locations} />
+      </ReactMapGL>
     </React.Fragment>
   );
 }
