@@ -69,7 +69,7 @@ public class HTTPUtils {
     public List<Float> combineDoubles(int num, int min, int max) throws IOException {
         return Streams.zip(getIntegers(num, min, max).stream(),
                 getFractions(num).stream(),
-                (d1, d2) -> (d1 == (float) min || d1 == (float) max) ? d1 : d1 + d2)
+                (d1, d2) -> ((d1.compareTo(new Float((float) min)) == 0) || (d1.compareTo(new Float((float) max)) == 0)) ? d1 : d1 + d2)
                 .collect(Collectors.toList());
     }
 
