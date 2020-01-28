@@ -2,22 +2,6 @@
   text-align: center;
 }
 
-body {
-  background: #404040;
-  color: #f8f8f8;
-  font: 500 20px/26px "Helvetica Neue", Helvetica, Arial, Sans-serif;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-}
-
-.map {
-  border-left: 1px solid #fff;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
