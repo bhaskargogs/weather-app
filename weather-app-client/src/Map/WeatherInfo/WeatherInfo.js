@@ -54,14 +54,16 @@ function WeatherInfo(props) {
         <div className="p2">
           <div className="d-flex flex-column">
             <div className="p2 text-center">Wind</div>
-            <div className="p2">Speed: {info.location.wind.speed}</div>
+            <div className="p2">
+              Speed: {info.location.wind.speed}
+            </div>
             <div className="p2">Degree: {info.location.wind.deg}</div>
           </div>
         </div>
       </div>
       <div className="d-flex flex-column">
-        <div className="p2">Sunrise: {info.location.sys.sunrise}</div>
-        <div className="p2">Sunset: {info.location.sys.sunset}</div>
+        <div className="p2">Sunrise: {new Date(info.location.sys.sunrise).getUTCHours() + ":" + new Date(info.location.sys.sunrise).getUTCMinutes()}</div>
+        <div className="p2">Sunset: {new Date(info.location.sys.sunset).getUTCHours() + ":" + new Date(info.location.sys.sunset).getUTCMinutes()}</div>
       </div>
     </div>
   );
