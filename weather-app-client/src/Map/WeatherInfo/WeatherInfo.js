@@ -6,9 +6,9 @@ function WeatherInfo(props) {
   return (
     <div>
       <div className="info-title">
-        {info.location.name === " " && info.location.sys.country === null
-          ? info.location.name + ", " + info.location.sys.country
-          : "Unknown"}
+        {(info.location.name === "" && info.location.sys.country === null)
+          ? "Unknown"
+          : (info.location.name + ", " + info.location.sys.country)}
       </div>
       <div className="d-flex flex-row mt-2">
         <div className="p2">
