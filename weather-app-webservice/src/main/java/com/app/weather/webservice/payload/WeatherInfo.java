@@ -3,6 +3,7 @@ package com.app.weather.webservice.payload;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigInteger;
 import java.time.Instant;
 
 @Getter
@@ -12,6 +13,6 @@ public class WeatherInfo {
     private int type;
     private double message;
     private String country;
-    private Instant sunrise;
-    private Instant sunset;
+    private BigInteger sunrise;
+    private BigInteger sunset;
 }
