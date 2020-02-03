@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,6 +69,7 @@ public class LocationServiceImpl implements LocationService {
             response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET,
                     null,
                     WeatherResponse.class);
+            utils.sanitize(response.getBody());
         } catch (RestClientException ex) {
             throw new RestClientException(ex.getMessage());
         }

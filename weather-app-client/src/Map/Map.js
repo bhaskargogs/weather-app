@@ -32,7 +32,6 @@ function Map(props) {
           closeOnClick={false}
           onClose={() => setPopupInfo(null)}
         >
-          {console.log(popupInfo)}
           <WeatherInfo info={popupInfo} />
         </Popup>
       )

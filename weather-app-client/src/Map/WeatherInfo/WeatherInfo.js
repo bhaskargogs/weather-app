@@ -1,8 +1,19 @@
 import React from "react";
 import "./WeatherInfo.css";
+import moment from "moment";
 
 function WeatherInfo(props) {
   const { info } = props;
+
+  const calcCelcius = (temp) => {
+    return Math.floor(temp - 273.15);
+  }
+
+  const getTime = (time) => {
+    const date = moment(time);
+    return date.utc().local().hours() + ":" + String(date.utc().local().minutes()).substr(-2);
+  }
+
   return (
     <div>
       <div className="info-title">
@@ -32,38 +43,24 @@ function WeatherInfo(props) {
         <div className="p2">
           <div className="d-flex flex-column">
             <div className="p2">
-              Temperature:{" "}
-              {(Math.round(info.location.main.temp - 273) * 100) / 100.0}C
+              Temperature:{calcCelcius(info.location.main.temp)} &deg;
             </div>
             <div className="p2">
-              Feels Like:{" "}
-              {(Math.round(info.location.main.feels_like - 273) * 100) / 100.0}C
+              Feels Like: {calcCelcius(info.location.main.feels_like)} &deg;
             </div>
             <div className="p2">
-              High:{" "}
-              {(Math.round(info.location.main.temp_max - 273) * 100) / 100.0}C
+              High: {calcCelcius(info.location.main.temp_max)}&deg;
             </div>
             <div className="p2">
-              Low:{" "}
-              {(Math.round(info.location.main.temp_min - 273) * 100) / 100.0}C
+              Low: {calcCelcius(info.location.main.temp_min)}&deg;
             </div>
-            <div className="p2">Pressure:{info.location.main.pressure}</div>
             <div className="p2"> Humidity: {info.location.main.humidity}%</div>
-          </div>
-        </div>
-        <div className="p2">
-          <div className="d-flex flex-column">
-            <div className="p2 text-center">Wind</div>
-            <div className="p2">
-              Speed: {info.location.wind.speed}
-            </div>
-            <div className="p2">Degree: {info.location.wind.deg}</div>
           </div>
         </div>
       </div>
       <div className="d-flex flex-column">
-        <div className="p2">Sunrise: {new Date(info.location.sys.sunrise).getUTCHours() + ":" + new Date(info.location.sys.sunrise).getUTCMinutes()}</div>
-        <div className="p2">Sunset: {new Date(info.location.sys.sunset).getUTCHours() + ":" + new Date(info.location.sys.sunset).getUTCMinutes()}</div>
+        <div className="p2">Sunrise: {getTime(info.location.sys.sunrise)}</div>
+        <div className="p2">Sunset: {getTime(info.location.sys.sunset)}</div>
       </div>
     </div>
   );
