@@ -40,15 +40,11 @@ class App extends Component {
           <div className="App">
             <div id="map" className="map pad2">
               <Map lat={lat} lon={lon} isLoading={isLoading} locations={locations} />
-              {/* <Map></Map> */}
             </div>
           </div>
         ) : (
           <h3>Loading ...</h3>
         )}
-
-        {/* <ReactMapGL mapboxApiAccessToken="pk.eyJ1Ijoic2JydWVjayIsImEiOiJjazV1NDQ4OWUwZnNyM2trMDVrNXowMTUwIn0.MEdrm_Mg3JXVefmWtVuaoA">
-        </ReactMapGL> */}
       </div>
     );
   }
