@@ -1,6 +1,6 @@
+import { Instant, LocalDateTime } from '@js-joda/core';
 import React from "react";
 import "./WeatherInfo.css";
-import moment from "moment";
 
 function WeatherInfo(props) {
   const { info } = props;
@@ -10,8 +10,8 @@ function WeatherInfo(props) {
   }
 
   const getTime = (time) => {
-    const date = moment(time);
-    return date.utc().local().hours() + ":" + String(date.utc().local().minutes()).substr(-2);
+    const date = LocalDateTime.ofInstant(Instant.ofEpochMilli(time * 1000)); 
+    return date.hour() + ":" + String(date.minute()).substr(-2);
   }
 
   return (

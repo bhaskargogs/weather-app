@@ -4,7 +4,6 @@ import com.app.weather.webservice.entity.Location;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @Getter
@@ -19,7 +18,7 @@ public class WeatherResponse {
     private Temperature main;
     private Wind wind;
     private Clouds clouds;
-    private BigInteger dt;
-    private BigInteger timezone;
+    private Long dt;
+    private Long timezone;
     private WeatherInfo sys;
 }

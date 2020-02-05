@@ -4,7 +4,6 @@ import com.app.weather.webservice.entity.Location;
 import com.app.weather.webservice.payload.WeatherResponse;
 import com.app.weather.webservice.service.LocationService;
 import com.app.weather.webservice.utils.HTTPUtils;
-import com.google.common.collect.Streams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,4 +43,5 @@ public class LocationController {
                 .collect(Collectors.toList());
         return locationService.setIdsAndReturn(weatherReport, num);
     }
+
 }

@@ -1,6 +1,5 @@
 package com.app.weather.webservice.utils;
 
-import com.app.weather.webservice.payload.WeatherResponse;
 import com.google.common.collect.Streams;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -9,7 +8,6 @@ import javax.inject.Named;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -71,15 +69,8 @@ public class HTTPUtils {
     public List<Float> combineDoubles(int num, int min, int max) throws IOException {
         return Streams.zip(getIntegers(num, min, max).stream(),
                 getFractions(num).stream(),
-                (d1, d2) -> ((d1.compareTo(new Float((float) min)) == 0) || (d1.compareTo(new Float((float) max)) == 0)) ? d1 : d1 + d2)
+                (d1, d2) -> ((d1.compareTo((float) min) == 0) || (d1.compareTo((float) max) == 0)) ? d1 : d1 + d2)
                 .collect(Collectors.toList());
-    }
-
-    public void sanitize (WeatherResponse response) {
-        response.getSys().setSunrise(response.getSys().getSunrise().multiply(new BigInteger(String.valueOf(1000))));
-        response.getSys().setSunset(response.getSys().getSunset().multiply(new BigInteger(String.valueOf(1000))));
-        response.setDt(response.getDt().multiply(new BigInteger((String.valueOf(1000)))));
-        response.setTimezone(response.getTimezone().multiply(new BigInteger(String.valueOf(1000))));
     }
 
 }
