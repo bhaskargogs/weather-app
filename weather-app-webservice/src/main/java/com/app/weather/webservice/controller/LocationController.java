@@ -1,7 +1,7 @@
 package com.app.weather.webservice.controller;
 
 import com.app.weather.webservice.entity.Location;
-import com.app.weather.webservice.payload.WeatherResponse;
+import com.app.weather.webservice.payload.WeatherInfoResponse;
 import com.app.weather.webservice.service.LocationService;
 import com.app.weather.webservice.utils.HTTPUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +31,14 @@ public class LocationController {
     }
 
     @GetMapping("/getWeather")
-    public WeatherResponse getWeather(@PathParam("lat") float lat, @PathParam("lon") float lon) {
+    public WeatherInfoResponse getWeather(@PathParam("lat") float lat, @PathParam("lon") float lon) {
         return locationService.getWeather(lat, lon);
     }
 
     @GetMapping("/getWeatherData/{num}")
-    public List<WeatherResponse> getWeatherData(@PathVariable("num") int num) throws IOException {
+    public List<WeatherInfoResponse> getWeatherData(@PathVariable("num") int num) throws IOException {
         List<Location> locations = getLocations(num);
-        List<WeatherResponse> weatherReport = locations.stream()
+        List<WeatherInfoResponse> weatherReport = locations.stream()
                 .map(location -> getWeather(location.getLat(), location.getLon()))
                 .collect(Collectors.toList());
         return locationService.setIdsAndReturn(weatherReport, num);

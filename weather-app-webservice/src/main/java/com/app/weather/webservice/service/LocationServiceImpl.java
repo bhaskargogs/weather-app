@@ -1,9 +1,11 @@
 package com.app.weather.webservice.service;
 
 import com.app.weather.webservice.entity.Location;
-import com.app.weather.webservice.payload.WeatherResponse;
+import com.app.weather.webservice.payload.WeatherInfoResponse;
+import com.app.weather.webservice.payload.rest.WeatherResponse;
 import com.app.weather.webservice.repository.LocationRepository;
 import com.app.weather.webservice.utils.HTTPUtils;
+import com.app.weather.webservice.utils.SanitizeUtils;
 import com.google.common.collect.Streams;
 import one.util.streamex.EntryStream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,22 +33,25 @@ public class LocationServiceImpl implements LocationService {
     private RestTemplate restTemplate;
 
     @Inject
-    private HTTPUtils utils;
+    private HTTPUtils restUtils;
 
-    @Value("${api.weathermap.data}")
+    @Inject
+    private SanitizeUtils utils;
+
+    @Value("${api.map.weather.data}")
     private String weatherApi;
 
-    @Value("${api.weathermap.key}")
+    @Value("${api.map.weather.key}")
     private String apiKey;
 
     @Override
     public List<Float> generateLatitudes(int num) throws IOException {
-        return utils.combineDoubles(num, -90, 90);
+        return restUtils.combineDoubles(num, -90, 90);
     }
 
     @Override
     public List<Float> generateLongitudes(int num) throws IOException {
-        return utils.combineDoubles(num, -180, 180);
+        return restUtils.combineDoubles(num, -180, 180);
     }
 
     @Override
@@ -57,8 +62,9 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public WeatherResponse getWeather(float lat, float lon) throws RestClientException {
+    public WeatherInfoResponse getWeather(float lat, float lon) throws RestClientException {
         ResponseEntity<WeatherResponse> response = null;
+        WeatherInfoResponse info = null;
         try {
             UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(weatherApi)
                     .queryParam("lat", lat)
@@ -67,15 +73,16 @@ public class LocationServiceImpl implements LocationService {
             response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET,
                     null,
                     WeatherResponse.class);
+            info = utils.sanitizeResponse(response.getBody());
         } catch (RestClientException ex) {
             throw new RestClientException(ex.getMessage());
         }
-        return response.getBody();
+        return info;
     }
 
     @Override
-    public List<WeatherResponse> setIdsAndReturn(List<WeatherResponse> weatherReport, int num) throws IOException {
-        List<Long> ids = IntStream.range(0, num).mapToLong(index -> new Long(index))
+    public List<WeatherInfoResponse> setIdsAndReturn(List<WeatherInfoResponse> weatherReport, int num) throws IOException {
+        List<Long> ids = IntStream.range(0, num).mapToLong(index -> (long) index)
                 .boxed().collect(Collectors.toList());
         List<Long> emptyIdList = weatherReport.stream().map(weatherResponse -> weatherResponse.getId())
                 .collect(Collectors.toList());

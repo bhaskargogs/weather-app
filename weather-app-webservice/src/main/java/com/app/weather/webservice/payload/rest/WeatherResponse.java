@@ -1,4 +1,4 @@
-package com.app.weather.webservice.payload;
+package com.app.weather.webservice.payload.rest;
 
 import com.app.weather.webservice.entity.Location;
 import lombok.Getter;

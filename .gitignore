@@ -1,6 +1,5 @@
 
 weather-app-webservice/HELP.md
-weather-app-webservice/target/
 
 ### STS ###
 weather-app-webservice/.apt_generated
@@ -12,10 +11,12 @@ weather-app-webservice/.springBeans
 weather-app-webservice/.sts4-cache
 
 ### IntelliJ IDEA ###
-weather-app-webservice/.idea
+weather-app-webservice/.idea/*
 weather-app-webservice/*.iws
 weather-app-webservice/*.iml
 weather-app-webservice/*.ipr
+weather-app-webservice/target/*
+weather-app-webservice/weather-app-webservice.iml
 
 ### NetBeans ###
 weather-app-webservice/nbproject/private/
@@ -23,7 +24,7 @@ weather-app-webservice/nbbuild/
 weather-app-webservice/dist/
 weather-app-webservice/nbdist/
 weather-app-webservice/.nb-gradle/
-weather-app-webservicebuild/
+weather-app-webservice/build/
 
 ### VS Code ###
 weather-app-webservice/.vscode/

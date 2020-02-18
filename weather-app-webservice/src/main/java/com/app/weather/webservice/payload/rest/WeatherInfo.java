@@ -1,4 +1,4 @@
-package com.app.weather.webservice.payload;
+package com.app.weather.webservice.payload.rest;
 
 import lombok.Getter;
 import lombok.Setter;
