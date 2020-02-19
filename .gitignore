@@ -11,11 +11,11 @@ weather-app-webservice/.springBeans
 weather-app-webservice/.sts4-cache
 
 ### IntelliJ IDEA ###
-weather-app-webservice/.idea/*
+weather-app-webservice/.idea/
 weather-app-webservice/*.iws
 weather-app-webservice/*.iml
 weather-app-webservice/*.ipr
-weather-app-webservice/target/*
+weather-app-webservice/target/
 weather-app-webservice/weather-app-webservice.iml
 
 ### NetBeans ###
