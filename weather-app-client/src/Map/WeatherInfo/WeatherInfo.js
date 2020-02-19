@@ -1,41 +1,50 @@
-import { Instant, LocalDateTime } from '@js-joda/core';
 import React from "react";
 import "./WeatherInfo.css";
+import moment from "moment";
+import {
+  ZonedDateTime,
+  ZoneId,
+  Instant,
+  DateTimeFormatter
+} from "@js-joda/core";
 
 function WeatherInfo(props) {
   const { info } = props;
 
-  const calcCelcius = (temp) => {
-    return Math.floor(temp - 273.15);
-  }
+  const getTime = (time, zone) => {
+    let timezone = moment(zone * 1000).utc();
+    let utc = moment(0).utc();
+    let duration = moment.duration(timezone.diff(utc));
+    let hours =
+      duration.hours() >= 0
+        ? "+" +
+          duration.hours().toLocaleString("en", { minimumIntegerDigits: 2 })
+        : duration.hours().toLocaleString("en", { minimumIntegerDigits: 2 });
 
-  const getTime = (time) => {
-    const date = LocalDateTime.ofInstant(Instant.ofEpochMilli(time * 1000)); 
-    return date.hour() + ":" + String(date.minute()).substr(-2);
-  }
+    let minutes = Math.abs(duration.minutes());
+    let zoneString =
+      hours + ":" + minutes.toLocaleString("en", { minimumIntegerDigits: 2 });
+    return ZonedDateTime.ofInstant(
+      Instant.ofEpochMilli(time * 1000),
+      ZoneId.of("UTC" + zoneString)
+    ).format(DateTimeFormatter.ofPattern("M/d/yyyy HH:mm"));
+  };
 
   return (
     <div>
       <div className="info-title">
-        {(info.location.name === "" && info.location.sys.country === null)
+        {info.location.city === "" && info.location.country === null
           ? "Unknown"
-          : (info.location.name + ", " + info.location.sys.country)}
+          : info.location.city + ", " + info.location.country}
       </div>
       <div className="d-flex flex-row mt-2">
         <div className="p2">
-          <img
-            src={
-              "http://openweathermap.org/img/w/" +
-              info.location.weather[0].icon +
-              ".png"
-            }
-            alt={info.location.weather[0].icon}
-          />
+          <img src={info.location.iconLink} alt={info.location.icon} />
         </div>
         <div className="p2 ml-2">
           <div className="d-flex flex-column">
-            <div className="p2">{info.location.weather[0].main}</div>
-            <div className="p2">{info.location.weather[0].description}</div>
+            <div className="p2">{info.location.info}</div>
+            <div className="p2">{info.location.infoDetails}</div>
           </div>
         </div>
       </div>
@@ -43,24 +52,24 @@ function WeatherInfo(props) {
         <div className="p2">
           <div className="d-flex flex-column">
             <div className="p2">
-              Temperature:{calcCelcius(info.location.main.temp)} &deg;
+              Temperature:{info.location.temperature} &deg;
             </div>
             <div className="p2">
-              Feels Like: {calcCelcius(info.location.main.feels_like)} &deg;
+              Feels Like: {info.location.feels_like} &deg;
             </div>
-            <div className="p2">
-              High: {calcCelcius(info.location.main.temp_max)}&deg;
-            </div>
-            <div className="p2">
-              Low: {calcCelcius(info.location.main.temp_min)}&deg;
-            </div>
-            <div className="p2"> Humidity: {info.location.main.humidity}%</div>
+            <div className="p2">High: {info.location.high}&deg;</div>
+            <div className="p2">Low: {info.location.low}&deg;</div>
+            <div className="p2"> Humidity: {info.location.humidity}%</div>
           </div>
         </div>
       </div>
       <div className="d-flex flex-column">
-        <div className="p2">Sunrise: {getTime(info.location.sys.sunrise)}</div>
-        <div className="p2">Sunset: {getTime(info.location.sys.sunset)}</div>
+        <div className="p2">
+          Sunrise: {getTime(info.location.sunrise, info.location.timezone)}
+        </div>
+        <div className="p2">
+          Sunset: {getTime(info.location.sunset, info.location.timezone)}
+        </div>
       </div>
     </div>
   );

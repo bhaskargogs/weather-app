@@ -23,8 +23,8 @@ class App extends Component {
       .then(locations => {
         this.setState({
           isLoading: false,
-          lat: locations[0].coord.lat,
-          lon: locations[0].coord.lon,
+          lat: locations[0].latitude,
+          lon: locations[0].longitude,
           locations: locations
         });
       })

@@ -10,15 +10,13 @@ function Markers(props) {
   return data.map(location => (
     <Marker
       key={location.id}
-      latitude={location.coord.lat}
-      longitude={location.coord.lon}
+      latitude={location.latitude}
+      longitude={location.longitude}
     >
       <img
         className="location-img"
-        src={
-          "http://openweathermap.org/img/w/" + location.weather[0].icon + ".png"
-        }
-        alt={location.weather[0].icon}
+        src={location.iconLink}
+        alt={location.icon}
         onClick={() => onClick(location)}
       ></img>
       

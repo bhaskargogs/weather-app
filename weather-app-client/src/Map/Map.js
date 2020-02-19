@@ -27,8 +27,8 @@ function Map(props) {
           className="popup-style"
           tipSize={5}
           anchor="top"
-          longitude={popupInfo.location.coord.lon}
-          latitude={popupInfo.location.coord.lat}
+          longitude={popupInfo.location.longitude}
+          latitude={popupInfo.location.latitude}
           closeOnClick={false}
           onClose={() => setPopupInfo(null)}
         >

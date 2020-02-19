@@ -2,9 +2,6 @@ package com.app.weather.webservice.utils;
 
 import com.app.weather.webservice.payload.WeatherInfoResponse;
 import com.app.weather.webservice.payload.rest.WeatherResponse;
-import org.joda.time.LocalTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.inject.Named;
