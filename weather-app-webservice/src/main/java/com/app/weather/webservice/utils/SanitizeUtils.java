@@ -24,7 +24,6 @@ public class SanitizeUtils {
         weatherInfo.setLatitude(response.getCoord().getLat());
         weatherInfo.setLongitude(response.getCoord().getLon());
         weatherInfo.setInfo(response.getWeather().get(0).getMain());
-        weatherInfo.setInfoDetails(response.getWeather().get(0).getDescription());
         weatherInfo.setIconLink(new StringBuilder().append(iconLink).append(response.getWeather().get(0).getIcon()).append(".png").toString());
         weatherInfo.setIcon(response.getWeather().get(0).getIcon());
         weatherInfo.setTemperature(convertToCelsius(response.getMain().getTemp()));
@@ -34,11 +33,11 @@ public class SanitizeUtils {
         weatherInfo.setWindSpeed(response.getWind().getSpeed());
         weatherInfo.setWindDirection(response.getWind().getDeg());
         weatherInfo.setCloudiness(response.getClouds().getAll());
-        weatherInfo.setPressure(response.getMain().getPressure());
         weatherInfo.setHumidity(response.getMain().getHumidity());
         weatherInfo.setTimezone(response.getTimezone());
         weatherInfo.setSunrise(response.getSys().getSunrise());
         weatherInfo.setSunset(response.getSys().getSunset());
+        weatherInfo.setDate(response.getDt());
         return weatherInfo;
     }
 }

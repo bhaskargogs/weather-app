@@ -14,7 +14,6 @@ public class WeatherInfoResponse {
     private String iconLink;
     private String icon;
     private String info;
-    private String infoDetails;
     private double temperature;
     private double low;
     private double high;
@@ -22,9 +21,9 @@ public class WeatherInfoResponse {
     private double windSpeed;
     private double windDirection;
     private int cloudiness;
-    private Long pressure;
     private Long humidity;
     private Long timezone;
     private Long sunrise;
     private Long sunset;
+    private Long date;
 }
