@@ -2,3 +2,45 @@
     font-weight: bold;
     font-size: 18px;
 }
+
+.img-info {
+    height: 90px;
+    width: 90px;
+}
+
+.sun-icon {
+    margin-top: 3px;
+}
+
+.weather-details {
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: -5px;
+}
+
+.title {
+    padding: 2px;
+    color: #FCFBFF;
+    background-color: #205C8B;
+}
+.content {
+    color: #FCFBFF;
+    background-color: #1E4177;
+}
+
+.content-info {
+    font-size: 12px;
+}
+
+.temp-font {
+    font-size: 40px;
+    padding: 8px;
+    font-weight: bolder;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.feels-font {
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

@@ -7,6 +7,8 @@ import {
   Instant,
   DateTimeFormatter
 } from "@js-joda/core";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faAngleUp, faAngleDown, faSun} from '@fortawesome/free-solid-svg-icons';
 
 function WeatherInfo(props) {
   const { info } = props;
@@ -27,17 +29,46 @@ function WeatherInfo(props) {
     return ZonedDateTime.ofInstant(
       Instant.ofEpochMilli(time * 1000),
       ZoneId.of("UTC" + zoneString)
-    ).format(DateTimeFormatter.ofPattern("M/d/yyyy HH:mm"));
+    ).format(DateTimeFormatter.ofPattern("HH:mm"));
   };
 
   return (
     <div>
-      <div className="info-title">
-        {info.city === "" && info.country === null
-          ? "Unknown"
-          : info.city + ", " + info.country}
+      <div className="d-flex flex-row justify-content-around title">
+          <div className="d-flex flex-column info-title">        
+          {info.city === "" && info.country === null
+            ? ""
+            : info.city.toUpperCase() + ", " + info.country.toUpperCase()}
+          </div>
+          <div className="d-flex flex-column"> Date </div>
       </div>
-      <div className="d-flex flex-row mt-2">
+      <div>
+        <div className="d-flex flex-row justify-content-around content">
+          <div className="d-flex flex-column p-2">
+            <div className="d-flex content-info justify-content-around">Humidity {info.humidity}%</div>
+            <div className="d-flex flex-row justify-content-center p-1">
+              <div className="d-flex flex-column pl-1"><FontAwesomeIcon icon={faAngleUp} /></div>
+              <div className="d-flex flex-column pl-1">{info.high}</div>
+              <div className="d-flex flex-column pl-1"><FontAwesomeIcon icon={faAngleDown} /></div>
+              <div className="d-flex flex-column pl-1">{info.low}</div>  
+            </div>
+            <div className="d-flex flex-row">
+              <div className="d-flex flex-column temp-font">{info.temperature}&deg;</div>
+              <div className="d-flex flex-column feels-font"> Feels like {info.feels_like}&deg;</div>
+            </div>
+            <div className="d-flex flex-row justify-content-center p-1">
+              <div className="d-flex flex-column p-1">{getTime(info.sunrise, info.timezone)}</div>
+              <div className="d-flex flex-column p-1"><FontAwesomeIcon className="sun-icon" icon={faSun} /></div>
+              <div className="d-flex flex-column p-1">{getTime(info.sunset, info.timezone)}</div>
+            </div>
+          </div>
+          <div className="d-flex flex-column p-2">
+            <div className="d-flex"><img className="img-info" src={info.iconLink} alt={info.icon} /></div> 
+            <div className="d-flex justify-content-center weather-details">{info.info}</div>
+          </div>
+        </div>
+      </div>
+      {/* <div className="d-flex flex-row mt-2">
         <div className="p2">
           <img src={info.iconLink} alt={info.icon} />
         </div>
@@ -70,7 +101,7 @@ function WeatherInfo(props) {
         <div className="p2">
           Sunset: {getTime(info.sunset, info.timezone)}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
