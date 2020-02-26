@@ -3,12 +3,17 @@
     font-size: 18px;
 }
 
+.wind-direction-img {
+    height: 10px;
+    width: 20px;
+}
+
 .img-info {
     height: 90px;
     width: 90px;
 }
 
-.sun-icon {
+.weather-icon {
     margin-top: 3px;
 }
 

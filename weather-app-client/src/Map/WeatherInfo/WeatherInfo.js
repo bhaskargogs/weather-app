@@ -8,7 +8,7 @@ import {
   DateTimeFormatter
 } from "@js-joda/core";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faAngleUp, faAngleDown, faSun} from '@fortawesome/free-solid-svg-icons';
+import {faAngleUp, faAngleDown, faSun, faCloud, faWind, faRandom} from '@fortawesome/free-solid-svg-icons';
 
 function WeatherInfo(props) {
   const { info } = props;
@@ -48,9 +48,9 @@ function WeatherInfo(props) {
             <div className="d-flex content-info justify-content-around">Humidity {info.humidity}%</div>
             <div className="d-flex flex-row justify-content-center p-1">
               <div className="d-flex flex-column pl-1"><FontAwesomeIcon icon={faAngleUp} /></div>
-              <div className="d-flex flex-column pl-1">{info.high}</div>
+              <div className="d-flex flex-column pl-1">{info.high}&deg;</div>
               <div className="d-flex flex-column pl-1"><FontAwesomeIcon icon={faAngleDown} /></div>
-              <div className="d-flex flex-column pl-1">{info.low}</div>  
+              <div className="d-flex flex-column pl-1">{info.low}&deg;</div>  
             </div>
             <div className="d-flex flex-row">
               <div className="d-flex flex-column temp-font">{info.temperature}&deg;</div>
@@ -58,8 +58,16 @@ function WeatherInfo(props) {
             </div>
             <div className="d-flex flex-row justify-content-center p-1">
               <div className="d-flex flex-column p-1">{getTime(info.sunrise, info.timezone)}</div>
-              <div className="d-flex flex-column p-1"><FontAwesomeIcon className="sun-icon" icon={faSun} /></div>
+              <div className="d-flex flex-column p-1"><FontAwesomeIcon className="weather-icon" icon={faSun} /></div>
               <div className="d-flex flex-column p-1">{getTime(info.sunset, info.timezone)}</div>
+            </div>
+            <div className="d-flex flex-row justify-content-center p-1">
+              <div className="d-flex flex-column pl-1"><FontAwesomeIcon className="weather-icon" icon={faWind} /></div>
+              <div className="d-flex flex-column pl-1">{info.windSpeed}</div>
+              <div className="d-flex flex-column pl-1"><FontAwesomeIcon className="weather-icon" icon={faRandom} /></div>
+              <div className="d-flex flex-column pl-1">{info.windDirection}</div>
+              <div className="d-flex flex-column pl-1"><FontAwesomeIcon className="weather-icon" icon={faCloud}/></div>
+              <div className="d-flex flex-column pl-1">{info.cloudiness}</div>
             </div>
           </div>
           <div className="d-flex flex-column p-2">
