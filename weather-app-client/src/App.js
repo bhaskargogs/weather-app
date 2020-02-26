@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Map from "./Map/Map";
 import "mapbox-gl/dist/mapbox-gl.css";
+import WeatherInfo from './Map/WeatherInfo/WeatherInfo';
 
 class App extends Component {
   state = {
@@ -34,10 +35,21 @@ class App extends Component {
   render() {
     const { error, isLoading, lat, lon, locations } = this.state;
     return (
-      <div className="App">
+      <div>
         {error ? <p> {error.message} </p> : null}
         {!isLoading ? (
           <div className="App">
+            <div className="sidebar">
+              <div className="heading">
+                <h1>Weather Report</h1>
+              </div>
+              <div id="listings" className="listings">
+                <div>
+                  {locations && locations.map((location) =>
+                  <WeatherInfo key={location.id} info={location} />)}
+                </div>
+              </div>
+            </div>
             <div id="map" className="map pad2">
               <Map lat={lat} lon={lon} isLoading={isLoading} locations={locations} />
             </div>

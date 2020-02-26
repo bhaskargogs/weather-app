@@ -33,18 +33,18 @@ function WeatherInfo(props) {
   return (
     <div>
       <div className="info-title">
-        {info.location.city === "" && info.location.country === null
+        {info.city === "" && info.country === null
           ? "Unknown"
-          : info.location.city + ", " + info.location.country}
+          : info.city + ", " + info.country}
       </div>
       <div className="d-flex flex-row mt-2">
         <div className="p2">
-          <img src={info.location.iconLink} alt={info.location.icon} />
+          <img src={info.iconLink} alt={info.icon} />
         </div>
         <div className="p2 ml-2">
           <div className="d-flex flex-column">
-            <div className="p2">{info.location.info}</div>
-            <div className="p2">{info.location.infoDetails}</div>
+            <div className="p2">{info.info}</div>
+            <div className="p2">{info.infoDetails}</div>
           </div>
         </div>
       </div>
@@ -52,23 +52,23 @@ function WeatherInfo(props) {
         <div className="p2">
           <div className="d-flex flex-column">
             <div className="p2">
-              Temperature:{info.location.temperature} &deg;
+              Temperature:{info.temperature} &deg;
             </div>
             <div className="p2">
-              Feels Like: {info.location.feels_like} &deg;
+              Feels Like: {info.feels_like} &deg;
             </div>
-            <div className="p2">High: {info.location.high}&deg;</div>
-            <div className="p2">Low: {info.location.low}&deg;</div>
-            <div className="p2"> Humidity: {info.location.humidity}%</div>
+            <div className="p2">High: {info.high}&deg;</div>
+            <div className="p2">Low: {info.low}&deg;</div>
+            <div className="p2"> Humidity: {info.humidity}%</div>
           </div>
         </div>
       </div>
       <div className="d-flex flex-column">
         <div className="p2">
-          Sunrise: {getTime(info.location.sunrise, info.location.timezone)}
+          Sunrise: {getTime(info.sunrise, info.timezone)}
         </div>
         <div className="p2">
-          Sunset: {getTime(info.location.sunset, info.location.timezone)}
+          Sunset: {getTime(info.sunset, info.timezone)}
         </div>
       </div>
     </div>

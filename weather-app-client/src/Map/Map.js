@@ -11,7 +11,7 @@ function Map(props) {
     longitude: props.lon,
     width: "100vw",
     height: "100vh",
-    zoom: 3
+    zoom: 2.9
   });
 
   const [popupInfo, setPopupInfo] = useState(null);
@@ -32,7 +32,7 @@ function Map(props) {
           closeOnClick={false}
           onClose={() => setPopupInfo(null)}
         >
-          <WeatherInfo info={popupInfo} />
+          <WeatherInfo info={popupInfo.location} />
         </Popup>
       )
     );
