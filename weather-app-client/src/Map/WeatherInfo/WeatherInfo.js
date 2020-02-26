@@ -13,7 +13,7 @@ import {faAngleUp, faAngleDown, faSun, faCloud, faWind, faRandom} from '@fortawe
 function WeatherInfo(props) {
   const { info } = props;
 
-  const getTime = (time, zone) => {
+  const getTimeZone = (zone) => {
     let timezone = moment(zone * 1000).utc();
     let utc = moment(0).utc();
     let duration = moment.duration(timezone.diff(utc));
@@ -24,13 +24,20 @@ function WeatherInfo(props) {
         : duration.hours().toLocaleString("en", { minimumIntegerDigits: 2 });
 
     let minutes = Math.abs(duration.minutes());
-    let zoneString =
-      hours + ":" + minutes.toLocaleString("en", { minimumIntegerDigits: 2 });
+    return hours + ":" + minutes.toLocaleString("en", { minimumIntegerDigits: 2 });
+  }
+
+  const getTime = (time, zone) => {
     return ZonedDateTime.ofInstant(
       Instant.ofEpochMilli(time * 1000),
-      ZoneId.of("UTC" + zoneString)
+      ZoneId.of("UTC" + getTimeZone(zone))
     ).format(DateTimeFormatter.ofPattern("HH:mm"));
   };
+
+  const getDate = (time, zone) => {
+    const date = ZonedDateTime.ofInstant(Instant.ofEpochMilli(time * 1000),ZoneId.of("UTC" + getTimeZone(zone)));
+    return date.dayOfMonth() + " " + date.month().toString().substr(0,3) + " " + date.year();
+  }
 
   return (
     <div>
@@ -40,7 +47,7 @@ function WeatherInfo(props) {
             ? ""
             : info.city.toUpperCase() + ", " + info.country.toUpperCase()}
           </div>
-          <div className="d-flex flex-column"> Date </div>
+          <div className="d-flex flex-column"> {getDate(info.date, info.timezone)} </div>
       </div>
       <div>
         <div className="d-flex flex-row justify-content-around content">
