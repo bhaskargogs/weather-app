@@ -83,40 +83,6 @@ function WeatherInfo(props) {
           </div>
         </div>
       </div>
-      {/* <div className="d-flex flex-row mt-2">
-        <div className="p2">
-          <img src={info.iconLink} alt={info.icon} />
-        </div>
-        <div className="p2 ml-2">
-          <div className="d-flex flex-column">
-            <div className="p2">{info.info}</div>
-            <div className="p2">{info.infoDetails}</div>
-          </div>
-        </div>
-      </div>
-      <div className="d-flex flex-row">
-        <div className="p2">
-          <div className="d-flex flex-column">
-            <div className="p2">
-              Temperature:{info.temperature} &deg;
-            </div>
-            <div className="p2">
-              Feels Like: {info.feels_like} &deg;
-            </div>
-            <div className="p2">High: {info.high}&deg;</div>
-            <div className="p2">Low: {info.low}&deg;</div>
-            <div className="p2"> Humidity: {info.humidity}%</div>
-          </div>
-        </div>
-      </div>
-      <div className="d-flex flex-column">
-        <div className="p2">
-          Sunrise: {getTime(info.sunrise, info.timezone)}
-        </div>
-        <div className="p2">
-          Sunset: {getTime(info.sunset, info.timezone)}
-        </div>
-      </div> */}
     </div>
   );
 }
